@@ -32,7 +32,7 @@ app.post('/api/send-mail', async (req, res) => {
   try {
     await client.sendMail({
       from: { address: "noreply@thegroup7.in", name: "Group7 Website" },
-      to: [{ email_address: { address: "group7website1@gmail.com", name: "Group7 Admin" } }],
+      to: [{ email_address: { address: "group7website1@gmail.com", name: "Group7" } }],
       subject: `New Contact Form Submission from ${name}`,
       htmlbody: `
         <div>
