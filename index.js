@@ -1,27 +1,21 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const cors = require('cors');
-const { SendMailClient } = require('zeptomail');
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import { SendMailClient } from 'zeptomail';
 
-// Load environment variables
 dotenv.config();
 
 const app = express();
-
-// ✅ Required for Render to detect the port
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// ZeptoMail client
 const client = new SendMailClient({
   url: "https://api.zeptomail.in/",
   token: process.env.ZEPTO_TOKEN
 });
 
-// Route
 app.post('/api/send-mail', async (req, res) => {
   const { name, email, phone, message } = req.body;
 
@@ -51,7 +45,6 @@ app.post('/api/send-mail', async (req, res) => {
   }
 });
 
-// ✅ Bind the app to the port (required by Render)
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
 });
