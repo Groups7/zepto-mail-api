@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import cors from 'cors';
 import { SendMailClient } from 'zeptomail';
@@ -10,8 +13,9 @@ app.use(express.json());
 
 const client = new SendMailClient({
   url: "https://api.zeptomail.in/",
-  token: "PHtE6r1cEb3j3WYq9hcE4vbsRJP1NNkq/LwyKFFA494TWP4GFk0BrNt6kmPk/UwqUvUQEfGawYk+su7I5+jRIT7rMj5MWmqyqK3sx/VYSPOZsbq6x00YuV8Td0bcUI7rcd5o0CDestndNA=="
+  token: process.env.ZEPTO_TOKEN
 });
+
 app.post('/api/send-mail', async (req, res) => {
   const { name, email, phone, message } = req.body;
 
